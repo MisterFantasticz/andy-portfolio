@@ -29,17 +29,19 @@ export const ThemeToggle = () => {
         }
     };
     return (
-        <button onClick={toggleTheme}
-            className={cn("fixed max-sm:hidden top-2.5 left-5 z-50 p-3 rounded-full transition-colors duration-300",
-            "focus:outline-hidden"
-        )}
-        >
+      <button
+        onClick={toggleTheme}
+        className={cn(
+          "fixed top-2.5 left-5 z-50 p-3 rounded-full transition-colors duration-300",
+          "max-sm:left-auto max-sm:right-20", // move right on small screens
+          "focus:outline-hidden"
+        )}>
         {" "}
         {isDarkMode ? (
-            <Sun className="h-8 w-8 text-yellow-300" /> 
+          <Sun className="h-8 w-8 text-yellow-300" />
         ) : (
-            <Moon className="h-8 w-8 text-gray-700" />
+          <Moon className="h-8 w-8 text-gray-700" />
         )}
-    </button>
+      </button>
     );
 };
