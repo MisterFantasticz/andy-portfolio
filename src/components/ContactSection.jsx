@@ -56,8 +56,7 @@ export const ContactSection = () => {
                   <h4 className="font-medium">Email</h4>
                   <a
                     href="mailto:andywijaya3103@gmail.com"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
+                    className="text-muted-foreground hover:text-primary transition-colors">
                     andywijaya3103@gmail.com
                   </a>
                 </div>
@@ -69,10 +68,9 @@ export const ContactSection = () => {
                 <div>
                   <h4 className="font-medium">Phone</h4>
                   <a
-                    href="tel+628126865158"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    +62 8126865158
+                    href="tel:+628126865158"
+                    className="text-muted-foreground hover:text-primary transition-colors">
+                    +62 812 6865 158
                   </a>
                 </div>
               </div>
@@ -94,20 +92,17 @@ export const ContactSection = () => {
               <div className="flex space-x-4 justify-center">
                 <a
                   href="https://www.linkedin.com/in/andy-wijaya-00ba40286/"
-                  target="_blank"
-                >
+                  target="_blank">
                   <Linkedin />
                 </a>
                 <a
                   href="https://www.instagram.com/andy_wijaya.desu/"
-                  target="_blank"
-                >
+                  target="_blank">
                   <Instagram />
                 </a>
                 <a
                   href="https://www.youtube.com/@Mister_Fantastic10/featured"
-                  target="_blank"
-                >
+                  target="_blank">
                   <Youtube />
                 </a>
               </div>
@@ -116,16 +111,14 @@ export const ContactSection = () => {
 
           <div
             className="bg-card p-8 rounded-lg shadow-xs"
-            onSubmit={handleSubmit}
-          >
+            onSubmit={handleSubmit}>
             <h3 className="text-2xl font-semibold mb-6"> Send a Message</h3>
 
             <form className="space-y-6">
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium mb-2"
-                >
+                  className="block text-sm font-medium mb-2">
                   {" "}
                   Your Name{" "}
                 </label>
@@ -142,8 +135,7 @@ export const ContactSection = () => {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium mb-2"
-                >
+                  className="block text-sm font-medium mb-2">
                   {" "}
                   Your Email{" "}
                 </label>
@@ -160,8 +152,7 @@ export const ContactSection = () => {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium mb-2"
-                >
+                  className="block text-sm font-medium mb-2">
                   {" "}
                   Your Message{" "}
                 </label>
@@ -179,8 +170,7 @@ export const ContactSection = () => {
                 disabled={isSubmitting}
                 className={cn(
                   "cosmic-button w-full flex items-center justify-center gap-2"
-                )}
-              >
+                )}>
                 {isSubmitting ? "Sending..." : "Send Message"}
                 <Send size={16} />
               </button>
