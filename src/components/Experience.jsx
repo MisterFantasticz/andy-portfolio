@@ -62,8 +62,10 @@ export const Experience = () => {
           <p
             className="text-muted-foreground
            animate-fade-in animation-delay-200">
-            A timeline of my professional growth, from curious beginner to
-            senior engineer leading teams and building products at scale.
+            A versatile professional with experience in software development,
+            digital sales, and customer-facing operations. Skilled in web
+            development, problem-solving, and delivering practical solutions
+            across technical and real-world environments.
           </p>
         </div>
 
