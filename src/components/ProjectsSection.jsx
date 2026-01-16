@@ -1,6 +1,6 @@
 /** @format */
 
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+  import { ArrowRight, ExternalLink, Github } from "lucide-react";
 
 const projects = [
   {
@@ -96,12 +96,9 @@ export const ProjectsSection = () => {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, key) => (
-            <a
+            <div
               key={key}
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover block">
+              className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover">
               <div className="h-48 overflow-hidden">
                 <img
                   src={project.image}
@@ -126,27 +123,17 @@ export const ProjectsSection = () => {
                   {project.description}
                 </p>
 
-                <div className="flex justify-between items-center">
-                  <div className="flex space-x-3">
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      onClick={(e) => e.stopPropagation()}
-                      className="text-foreground/80 hover:text-primary">
-                      <ExternalLink size={20} />
-                    </a>
-
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      onClick={(e) => e.stopPropagation()}
-                      className="text-foreground/80 hover:text-primary">
-                      <Github />
-                    </a>
-                  </div>
+                <div className="flex justify-left items-center">
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-foreground/80 hover:text-primary transition-colors duration-300">
+                    <Github />
+                  </a>
                 </div>
               </div>
-            </a>
+            </div>
           ))}
         </div>
 

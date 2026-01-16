@@ -63,11 +63,10 @@ export const Testimonials = () => {
             className="text-4xl md:text-5xl 
           font-bold mt-4 mb-6 animate-fade-in 
           animation-delay-100 text-secondary-foreground">
-            Kind words from{" "}
+            Kind Words From{" "}
             <span
-              className="font-serif italic 
-            font-normal text-primary">
-              amazing people.
+              className="text-primary">
+              Amazing People
             </span>
           </h2>
         </div>

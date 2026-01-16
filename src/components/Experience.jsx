@@ -27,7 +27,7 @@ const experiences = [
     company: "Itemku (Independent Seller)",
     description:
       "Operated an online digital goods store selling in-game items and currencies. Managed listings, pricing, customer communication, and order fulfillment while maintaining positive ratings and trusted seller status.",
-    technologies: ["E-commerce", "Customer Support", "Digital Payments"],
+    technologies: ["E-commerce ", "Customer Support", "Digital Payments"],
     current: false,
   },
 ];
@@ -52,11 +52,8 @@ export const Experience = () => {
             className="text-4xl md:text-5xl font-bold
            mt-4 mb-6 animate-fade-in animation-delay-100
             text-secondary-foreground">
-            Experience that{" "}
-            <span className="font-serif italic font-normal text-primary">
-              {" "}
-              speaks volumes.
-            </span>
+            Experience That{" "}
+            <span className="text-primary"> Speaks Volumes</span>
           </h2>
 
           <p
@@ -92,10 +89,10 @@ export const Experience = () => {
                   className={`pl-8 md:pl-0 ${
                     idx % 2 === 0
                       ? "md:pr-16 md:text-right"
-                      : "md:col-start-2 md:pl-16"
+                      : "md:col-start-2 md:pl-16 md:text-left"
                   }`}>
                   <div
-                    className={`glass p-6 rounded-2xl border border-primary/30 hover:border-primary/50 transition-all duration-500`}>
+                    className={`p-6 rounded-2xl border border-primary bg-background/90 hover:border-primary/50 transition-all duration-500`}>
                     <span className="text-sm text-primary font-medium">
                       {exp.period}
                     </span>
@@ -106,13 +103,20 @@ export const Experience = () => {
                     </p>
                     <div
                       className={`flex flex-wrap gap-2 mt-4 ${
-                        idx % 2 === 0 ? "md:justify-end" : ""
+                        idx % 2 === 0 ? "md:justify-end " : ""
                       }`}>
                       {exp.technologies.map((tech, techIdx) => (
                         <span
                           key={techIdx}
-                          className="px-3 py-1 bg-surface text-xs rounded-full text-muted-foreground">
-                          {tech}
+                          className="flex items-center text-xs">
+                          <span className="px-3 py-1 bg-surface rounded-full text-muted-foreground">
+                            {tech}
+                          </span>
+                          {techIdx < exp.technologies.length - 1 && (
+                            <span className="mx-2 text-muted-foreground">
+                              |
+                            </span>
+                          )}
                         </span>
                       ))}
                     </div>

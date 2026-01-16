@@ -11,7 +11,7 @@ export const AboutSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold">
-                Passionate web developer crafting digital experiences.
+                Passionate web developer crafting digital experiences
               </h3>
 
               <p className="text-muted-foreground text-justify">

@@ -3,7 +3,6 @@
 import { cn } from "@/library/utils";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { ThemeToggle } from "@/components/ThemeToggle";
 
 const navItems = [
   { name: "Home", href: "#hero" },
@@ -17,29 +16,49 @@ const navItems = [
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+    const [isHidden, setIsHidden] = useState(false);
+    const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.screenY > 10);
+      const currentScrollY = window.scrollY;
+
+      // background effect
+      setIsScrolled(currentScrollY > 10);
+
+      // hide / show logic
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        setIsHidden(true); // scrolling down
+      } else {
+        setIsHidden(false); // scrolling up
+      }
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
   return (
     <nav
       className={cn(
         "fixed w-full z-40 transition-all duration-300",
-        isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
+        isScrolled
+          ? "py-3 bg-background/80 backdrop-blur-md shadow-xs"
+          : "bg-transparent",
+        isHidden ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
       )}>
-      <div className="container flex items-center justify-between">
+      <div className="container relative flex items-center justify-between px-4 md:px-0">
         <a
-          className="text-2xl font-bold text-primary flex items-center"
-          href="#hero">
-          <span className="relative z-10">
+          href="#hero"
+          className="
+            absolute left-1/2 -translate-x-1/2
+            md:static md:translate-x-0
+            flex items-center font-bold text-primary
+        ">
+          <span className="relative z-10 text-sm md:text-2xl text-center">
             <span className="text-glow text-foreground">Andy Wijaya</span>{" "}
-            Portfolio
+            <span className="block sm:inline text-1xl sm:text">Portfolio</span>
           </span>
         </a>
 
@@ -58,9 +77,8 @@ export const Navbar = () => {
 
         <button
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-          className="md:hidden p-2 text-foreground z-50"
+          className="md:hidden ml-auto p-2 text-foreground z-50"
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}>
-          {" "}
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
