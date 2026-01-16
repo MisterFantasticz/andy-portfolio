@@ -16,8 +16,8 @@ const navItems = [
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-    const [isHidden, setIsHidden] = useState(false);
-    const [lastScrollY, setLastScrollY] = useState(0);
+  const [isHidden, setIsHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -39,12 +39,39 @@ export const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
+
+  // Smooth scroll function
+  const smoothScrollTo = (targetId) => {
+    const targetElement = document.querySelector(targetId);
+    if (!targetElement) return;
+
+    const start = window.scrollY;
+    const end = targetElement.getBoundingClientRect().top + window.scrollY;
+    const distance = end - start;
+    const duration = 600; // ms
+    let startTime = null;
+
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+    const animateScroll = (currentTime) => {
+      if (!startTime) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      window.scrollTo(0, start + distance * easeOutCubic(progress));
+
+      if (elapsed < duration) requestAnimationFrame(animateScroll);
+    };
+
+    requestAnimationFrame(animateScroll);
+  };
+
   return (
     <nav
       className={cn(
-        "fixed w-full z-40 transition-all duration-300",
+        "fixed w-full z-40 transition-all duration-300 py-3",
         isScrolled
-          ? "py-3 bg-background/80 backdrop-blur-md shadow-xs"
+          ? "bg-background/80 backdrop-blur-md shadow-xs"
           : "bg-transparent",
         isHidden ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
       )}>
@@ -55,7 +82,12 @@ export const Navbar = () => {
             absolute left-1/2 -translate-x-1/2
             md:static md:translate-x-0
             flex items-center font-bold text-primary
-        ">
+          "
+          onClick={(e) => {
+            e.preventDefault();
+            smoothScrollTo("#hero");
+            setIsMobileMenuOpen(false);
+          }}>
           <span className="relative z-10 text-sm md:text-2xl text-center">
             <span className="text-glow text-foreground">Andy Wijaya</span>{" "}
             <span className="block sm:inline text-1xl sm:text">Portfolio</span>
@@ -68,13 +100,17 @@ export const Navbar = () => {
             <a
               key={key}
               href={item.href}
-              className="text-foreground/80 hover:text-primary transition-colors duration-300">
+              className="text-foreground/80 hover:text-primary transition-colors duration-300"
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollTo(item.href);
+              }}>
               {item.name}
             </a>
           ))}
         </div>
-        {/* mobile nav */}
 
+        {/* mobile nav button */}
         <button
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
           className="md:hidden ml-auto p-2 text-foreground z-50"
@@ -82,6 +118,7 @@ export const Navbar = () => {
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
+        {/* mobile menu */}
         <div
           className={cn(
             "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
@@ -96,7 +133,11 @@ export const Navbar = () => {
                 key={key}
                 href={item.href}
                 className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                onClick={() => setIsMobileMenuOpen(false)}>
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  smoothScrollTo(item.href);
+                }}>
                 {item.name}
               </a>
             ))}
